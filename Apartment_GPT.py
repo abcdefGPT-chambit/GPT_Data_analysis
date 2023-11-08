@@ -55,14 +55,13 @@ print(df.head())
 # agent = create_pandas_dataframe_agent(OpenAI(temperature=0),df,verbose=True)
 # GPT version 4 사용
 agent = create_pandas_dataframe_agent(chat,df,verbose=True) 
-# verbose는 생각의 과정을 설정해준다.ㅌ
+# verbose는 생각의 과정을 설정해준다.
 
 # print(agent.run("몇개의 행이 있어?"))
-# print(agent.run("상위 30% 층의 평균 가격을 알려줘"))
+print(agent.run("상위 30% 층의 평균 가격을 알려줘"))
 # print(agent.run("하위 30% 층의 평균 가격을 알려줘"))
 # print(agent.run("최근 거래량의 방향성을 알려줘"))
-print(agent.run("최근 가격의 방향성을 알려줘"))
-# print(agent.run("8월에서 9월 사이에 가장 거래량이 많이 상승한 위치는 어디야?"))
+# print(agent.run("최근 가격의 방향성을 알려줘"))
 
 ###Start
 
