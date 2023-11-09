@@ -7,103 +7,57 @@ from langchain.schema import (
     HumanMessage,
     SystemMessage
 )
-from langchain import PromptTemplate
 
-from langchain.document_loaders import TextLoader
-from langchain.document_loaders.csv_loader import CSVLoader
 from langchain.agents import create_pandas_dataframe_agent
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-
-from langchain.chains.question_answering import load_qa_chain
-from langchain.chains import AnalyzeDocumentChain
 
 import constants
 
+def convert_price_to_int(price_str):
+    parts = price_str.split('억')
+    billion = int(parts[0]) * 100000000 if parts[0] else 0
+    million = int(parts[1].replace(',', '').strip()) * 10000 if len(parts) > 1 and parts[1].strip() else 0
+    return billion + million
+
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
-chat = ChatOpenAI(model_name='gpt-4', temperature=0, openai_api_key=constants.APIKEY)
 #temperature 값을 수정하여 모델의 온도를 변경할 수  있다. default는 0.7, 1에 가까울 수록 다양성 증진
+chat3 = OpenAI(temperature=0)
+# chat3([SystemMessage(content="한국어로 완성된 문장으로 대답해줘")])
 
-#############################
-##      Input Prompt       ##
-#############################
-
-GPT_Input_prompt = PromptTemplate(
-    input_variables=["floor"], 
-    template="{floor}층의 최신 1년의 평균 가격을 알려줘"
-)
-
-GPT_Input_prompt.format(floor="상위 30%") #input prompt example
-
-# print(GPT_Input_prompt.format(floor="상위 30%")) #output prompt example
-
-
-#############################
-##      Data Loader        ##
-#############################
-
-# loader = TextLoader('data/data2.txt')
-loader = CSVLoader('data/HelioCity.csv')
-data = loader.load()
+chat4 = ChatOpenAI(model_name='gpt-4', temperature=0.2, openai_api_key=constants.APIKEY)
+chat4([SystemMessage(content="한국어로 완성된 문장으로 대답해줘")])
 
 df = pd.read_csv('data/HelioCity.csv')
-# df = pd.read_csv('data/Seoul_Transaction_Sep.csv')
+
+###데이터 전처리 ###
+df = df[~df['Price'].str.contains("취소", na=False, case=False)]
+df = df[~df['Price'].str.contains("직", na=False, case=False)]
+df = df[~df['Floor'].str.contains("입주권", na=False, case=False)]
+df = df[~df['Floor'].str.contains("분양권", na=False, case=False)]
+
+df['Price'] = df['Price'].apply(convert_price_to_int)
+df['Floor'] = df['Floor'].str.extract(r'(\d+)층')[0].astype(int)
+
 print(df.head())
 
 # GPT version 3 사용
-# agent = create_pandas_dataframe_agent(OpenAI(temperature=0),df,verbose=True)
+agent = create_pandas_dataframe_agent(OpenAI(temperature=0.3),df,verbose=True)
+
 # GPT version 4 사용
-agent = create_pandas_dataframe_agent(chat,df,verbose=True) 
+# agent = create_pandas_dataframe_agent(chat4,df,verbose=True) 
 # verbose는 생각의 과정을 설정해준다.
 
+Answer = []
+
 # print(agent.run("몇개의 행이 있어?"))
-print(agent.run("상위 30% 층의 평균 가격을 알려줘"))
-# print(agent.run("하위 30% 층의 평균 가격을 알려줘"))
-# print(agent.run("최근 거래량의 방향성을 알려줘"))
-# print(agent.run("최근 가격의 방향성을 알려줘"))
+Answer.append(agent.run("상위 30% 층의 평균 가격을 몇억 몇천 만원인지까지만 알려줘"))
+Answer.append(agent.run("하위 30% 층의 평균 가격을 몇억 몇천 만원인지까지만 알려줘"))
+Answer.append(agent.run("최근 거래량의 방향성과 판단한 정확한 이유를 알려줘"))
+Answer.append(agent.run("최근 가격의 방향성과 판단한 정확한 이유를 알려줘"))
+Answer.append(agent.run("평균 가격에 비해 가장 최근 가격이 몇억 몇천 만원 높은지 낮은지 알려줘"))
+Answer.append(agent.run("최고가 대비 최근 가격이 몇억 몇천 만원 낮은지 알려줘"))
+Answer.append(agent.run("최저가 대비 최근 가격이 몇억 몇천 만원 높은지 알려줘"))
 
-###Start
+print(Answer)
 
-# # 스플리터 준비하기
-# text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50) #1000자 단위로 자른다.
-# all_splits = text_splitter.split_documents(data)
-
-# # 문서를 텍스트로 분할
-# texts = text_splitter.split_documents(data)
-
-# # 임베딩 엔진 준비하기
-# embeddings = OpenAIEmbeddings()
-
-# print (f"You have {len(texts)} documents")
-# print(texts[1])
-
-# Text = ""
-# for temp_text in texts:
-#     # print(temp_text.page_content)
-#     Text+=temp_text.page_content
-
-# print(Text)
-
-# embedding_list = embeddings.embed_documents([text.page_content for text in texts])
-
-# print (f"You have {len(embedding_list)} embeddings")
-# print (f"Here's a sample of one: {embedding_list[0][:3]}...")
-
-# qa_chain = load_qa_chain(chat, chain_type="map_reduce")
-# qd_document_chain = AnalyzeDocumentChain(combine_docs_chain=qa_chain)
-
-
-# # print(qd_document_chain.run(
-# #     input_document = Text,
-# #     question = "2019년 9월 28일 가격을 알려줘"
-# # ))
-
-
-# # sys = SystemMessage(content="당신은 부동산의 거래량을 분석해주는 AI 봇이야")
-# # msg = HumanMessage(content='23년 10월 5일에 거래된 가격은 얼마야?')
-
-# # aimsg = chat([sys, msg])
-# # print(aimsg.content)
 
 print("\n***Test Done***\n\n")
