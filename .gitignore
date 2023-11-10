@@ -4,3 +4,4 @@ persist/
 .DS_Store
 .chroma/
 .ipynb_checkpoints/
+.idea/

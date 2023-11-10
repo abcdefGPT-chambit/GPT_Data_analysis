@@ -50,13 +50,6 @@ agent2 = create_pandas_dataframe_agent(chat1,df,verbose=True)
 Answer = []
 Final_Answer = []
 
-# Temp1 = agent2.run("상위 30% 층의 평균 가격을 알려줘. 가격에 대해
-#  가격을 만원 단위로 바꿔줘")
-# print(Temp1)
-# Temp2 = Temp1 + "앞의 문장의 가격을 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
-# Temp2 = agent2.run(Temp2)
-# print(Temp2)
-# Answer.append(Temp2)
 
 Temp1 = agent1.run("Please tell me the average price of the top 30%% floors of apartments. in won")
 print(Temp1)
@@ -79,20 +72,22 @@ Temp3 = agent2.run(Temp2)
 print(Temp3)
 Answer.append(Temp3)
 
-# print(Temp3)
-# Answer.append(agent.run("하위 30% 층의 평균 가격을 몇억 몇천 만원인지 알려줘"))
-# Answer.append(agent.run("최근 거래량의 방향성과 판단한 정확한 이유를 알려줘"))
-# Answer.append(agent1.run("최근 가격의 방향성과 판단한 정확한 이유를 알려줘"))
-# Answer.append(agent1.run("평균 가격에 비해 가장 최근 가격이 얼마나 높은지 낮은지 알려줘"))
-# Temp1 = agent2.run("Tell me the most how much recent price in data compared to the highest price, and what percentage")
+Temp1 = agent1.run("최근 거래량의 방향성과 판단한 정확한 이유를 알려줘")
+print(Temp1)
+Answer.append(Temp1)
+
+Temp1 = agent1.run("최근 가격의 방향성과 판단한 정확한 이유를 알려줘")
+print(Temp1)
+Answer.append(Temp1)
+
+
+
 Temp1 = agent2.run("평균 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 높은지 낮은지 알려줘. 추가로 비율도 알려줘.")
 print(Temp1)
 Temp2 = Temp1 + "앞의 문장의 가격의 차이에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
 Temp2 = agent2.run(Temp2)
 print(Temp2)
 Answer.append(Temp2)
-
-# Answer.append(agent2.run("Tell me the price and percentage how high the latest trading day price is compared to the lowest price"))
 
 print(Answer)
 print(Final_Answer)
