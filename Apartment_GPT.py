@@ -44,12 +44,12 @@ Answer = []
 ###############################
 ##### select Apt and type #####
 ###############################
-df = pd.read_csv('data/4_BanpoRaemianFirstige_26py.csv')
-Answer.append('1Hq6f')
-Answer.append('26')
+df = pd.read_csv('data/10_ParkRio_52py.csv')
+Answer.append('1Xyb5')
+Answer.append('52')
 
 
-chat1 = ChatOpenAI(model_name='gpt-4', temperature=0.2, openai_api_key=constants.APIKEY)
+chat1 = ChatOpenAI(model_name='gpt-4', temperature=0.1, openai_api_key=constants.APIKEY)
 # chat1([SystemMessage(content="한국어로 변역해줘")])
 
 ###데이터 전처리 ###
@@ -71,7 +71,7 @@ agent2 = create_pandas_dataframe_agent(chat1,df,verbose=True)
 # verbose는 생각의 과정을 설정해준다.
 
 #####Question1#####
-Temp1 = agent1.run("Tell me the average price of the apartment. in won")
+Temp1 = agent2.run("Tell me the average price of the apartment. in won")
 print(Temp1)
 Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
 # Temp2 = agent2.run(Temp2)
