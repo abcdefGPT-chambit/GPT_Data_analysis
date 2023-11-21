@@ -1,7 +1,8 @@
 import openai
 import os
+import constants
 
-openai.api_key = "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"
+openai.api_key = constants.APIKEY
 response = openai.ChatCompletion.create(
   model="ft:gpt-3.5-turbo-1106:kw::8NDDT028",
   messages = [

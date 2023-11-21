@@ -1,6 +1,7 @@
 import os
+import constants
 
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = constants.APIKEY
 import pandas as pd
 df = pd.read_csv('Seoul_Transaction_Sep.csv')
 print(df.head())
