@@ -87,99 +87,99 @@ agent2 = create_pandas_dataframe_agent(chat1,df,verbose=True)
 agent3 = create_pandas_dataframe_agent(chat1,Transaction_df,verbose=True) 
 
 #####Question1#####
-# Temp1 = agent2.run("Tell me the average price of the apartment. in won")
-# print(Temp1)
-# Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
-# # Temp2 = agent2.run(Temp2)
-# Temp2 = chat1([HumanMessage(content=Temp2)])
-# Temp2 = Temp2.content
-# print(Temp2)
-# if '억' in Temp2:
-#     Answer.append(Temp2)
-# else:
-#     Temp2 = Temp2 +" 에서 가격을 만원 단위로 정리한 문장을 만들어줘. 나머지 금액은 버려줘"
-#     # Temp3 = chat1([HumanMessage(content=Temp2)])
-#     # Temp3 = Temp3.content
-#     Temp3 = agent2.run(Temp2)
-#     print(Temp3)
-#     Temp3 = Temp3.replace(",","")
-#     Temp4 = format_price_correctly(Temp3)
-#     print(Temp4)
-#     Answer.append(Temp4)
+Temp1 = agent2.run("Tell me the average price of the apartment. in won")
+print(Temp1)
+Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
+# Temp2 = agent2.run(Temp2)
+Temp2 = chat1([HumanMessage(content=Temp2)])
+Temp2 = Temp2.content
+print(Temp2)
+if '억' in Temp2:
+    Answer.append(Temp2)
+else:
+    Temp2 = Temp2 +" 에서 가격을 만원 단위로 정리한 문장을 만들어줘. 나머지 금액은 버려줘"
+    # Temp3 = chat1([HumanMessage(content=Temp2)])
+    # Temp3 = Temp3.content
+    Temp3 = agent2.run(Temp2)
+    print(Temp3)
+    Temp3 = Temp3.replace(",","")
+    Temp4 = format_price_correctly(Temp3)
+    print(Temp4)
+    Answer.append(Temp4)
 
 #####Question2#####
-# Temp1 = agent2.run("Please tell me the average price of the top 30%% floors of apartments. in won. Please do not give me final answer in variable!")
-# print(Temp1)
-# Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
-# # Temp2 = agent2.run(Temp2)
-# Temp2 = chat1([HumanMessage(content=Temp2)])
-# Temp2 = Temp2.content
-# print(Temp2)
-# if '억' in Temp2:
-#     Answer.append(Temp2)
-# else:
-#     Temp2 = Temp2 +" 에서 가격을 만원 단위로 정리한 문장을 만들어줘. 나머지 금액은 버려줘"
-#     # Temp3 = chat1([HumanMessage(content=Temp2)])
-#     # Temp3 = Temp3.content
-#     Temp3 = agent2.run(Temp2)
-#     print(Temp3)
-#     Temp3 = Temp3.replace(",","")
-#     Temp4 = format_price_correctly(Temp3)
-#     print(Temp4)
-#     Answer.append(Temp4)
+Temp1 = agent2.run("Please tell me the average price of the top 30%% floors of apartments. in won. Please do not give me final answer in variable!")
+print(Temp1)
+Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
+# Temp2 = agent2.run(Temp2)
+Temp2 = chat1([HumanMessage(content=Temp2)])
+Temp2 = Temp2.content
+print(Temp2)
+if '억' in Temp2:
+    Answer.append(Temp2)
+else:
+    Temp2 = Temp2 +" 에서 가격을 만원 단위로 정리한 문장을 만들어줘. 나머지 금액은 버려줘"
+    # Temp3 = chat1([HumanMessage(content=Temp2)])
+    # Temp3 = Temp3.content
+    Temp3 = agent2.run(Temp2)
+    print(Temp3)
+    Temp3 = Temp3.replace(",","")
+    Temp4 = format_price_correctly(Temp3)
+    print(Temp4)
+    Answer.append(Temp4)
 
 #####Question3#####
-# Temp1 = agent2.run("Please tell me the average price of the bottom 30%% floors of apartments. in won. Please do not give me final answer in variable!")
-# print(Temp1)
-# Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
-# # Temp2 = agent2.run(Temp2)
-# Temp2 = chat1([HumanMessage(content=Temp2)])
-# Temp2 = Temp2.content
-# print(Temp2)
-# if '억' in Temp2:
-#     Answer.append(Temp2)
-# else:
-#     Temp2 = Temp2 +" 에서 가격을 만원 단위로 정리한 문장을 만들어줘. 나머지 금액은 버려줘"
-#     # Temp3 = chat1([HumanMessage(content=Temp2)])
-#     # Temp3 = Temp3.content
-#     Temp3 = agent2.run(Temp2)
-#     print(Temp3)
-#     Temp3 = Temp3.replace(",","")
-#     Temp4 = format_price_correctly(Temp3)
-#     print(Temp4)
-#     Answer.append(Temp4)
+Temp1 = agent2.run("Please tell me the average price of the bottom 30%% floors of apartments. in won. Please do not give me final answer in variable!")
+print(Temp1)
+Temp2 = Temp1 +" 의 문장을 한국어로 번역해줘"
+# Temp2 = agent2.run(Temp2)
+Temp2 = chat1([HumanMessage(content=Temp2)])
+Temp2 = Temp2.content
+print(Temp2)
+if '억' in Temp2:
+    Answer.append(Temp2)
+else:
+    Temp2 = Temp2 +" 에서 가격을 만원 단위로 정리한 문장을 만들어줘. 나머지 금액은 버려줘"
+    # Temp3 = chat1([HumanMessage(content=Temp2)])
+    # Temp3 = Temp3.content
+    Temp3 = agent2.run(Temp2)
+    print(Temp3)
+    Temp3 = Temp3.replace(",","")
+    Temp4 = format_price_correctly(Temp3)
+    print(Temp4)
+    Answer.append(Temp4)
 
 #####Question4#####
-# Temp1 = agent2.run("평균 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 높은지 낮은지 알려줘. 추가로 비율도 알려줘.")
-# print(Temp1)
-# Temp2 = Temp1 + "앞의 문장의 가격의 차이에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
-# Temp2 = agent2.run(Temp2)
-# print(Temp2)
-# Temp3 = format_price_correctly(Temp2)
-# print(Temp3)
-# Answer.append(Temp3)
+Temp1 = agent2.run("평균 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 높은지 낮은지 알려줘. 추가로 비율도 알려줘.")
+print(Temp1)
+Temp2 = Temp1 + "앞의 문장의 가격의 차이에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
+Temp2 = agent2.run(Temp2)
+print(Temp2)
+Temp3 = format_price_correctly(Temp2)
+print(Temp3)
+Answer.append(Temp3)
 
 #####Question5#####
-# Temp1 = agent2.run("최고 가격을 알려줘. 최고 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 낮은지 알려줘. 추가로 비율도 알려줘. 제발 변수를 이용하지 말아줘!")
-# print(Temp1)
-# Temp2 = Temp1 + "앞의 문장의 가격에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
-# Temp2 = agent2.run(Temp2)
-# print(Temp2)
-# Temp2 = Temp2.replace(",","")
-# Temp3 = format_price_correctly(Temp2)
-# print(Temp3)
-# Answer.append(Temp3)
+Temp1 = agent2.run("최고 가격을 알려줘. 최고 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 낮은지 알려줘. 추가로 비율도 알려줘. 제발 변수를 이용하지 말아줘!")
+print(Temp1)
+Temp2 = Temp1 + "앞의 문장의 가격에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
+Temp2 = agent2.run(Temp2)
+print(Temp2)
+Temp2 = Temp2.replace(",","")
+Temp3 = format_price_correctly(Temp2)
+print(Temp3)
+Answer.append(Temp3)
 
 #####Question6#####
-# Temp1 = agent2.run("최저 가격을 알려줘. 최저 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 높은지 알려줘. 추가로 비율도 알려줘. 제발 변수를 이용하지 말아줘!")
-# print(Temp1)
-# Temp2 = Temp1 + "앞의 문장의 가격에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
-# Temp2 = agent2.run(Temp2)
-# print(Temp2)
-# Temp2 = Temp2.replace(",","")
-# Temp3 = format_price_correctly(Temp2)
-# print(Temp3)
-# Answer.append(Temp3)
+Temp1 = agent2.run("최저 가격을 알려줘. 최저 가격에 비해 가장 최신의 거래와(1행)의 가격이 얼마나 높은지 알려줘. 추가로 비율도 알려줘. 제발 변수를 이용하지 말아줘!")
+print(Temp1)
+Temp2 = Temp1 + "앞의 문장의 가격에 대해 단위를 만원 단위로 바꿔줘. 미만의 금액은 버려줘. 나머지 문장은 그대로 둬. 한글이 아니라면 한글로 바꿔줘"
+Temp2 = agent2.run(Temp2)
+print(Temp2)
+Temp2 = Temp2.replace(",","")
+Temp3 = format_price_correctly(Temp2)
+print(Temp3)
+Answer.append(Temp3)
 
 #####Question7#####
 Temp1 = agent3.run("전체적인 거래량중 최근 거래량의 방향성을 알려줘. 그렇게 답한 상세한 이유도 알려줘. 한글로 대답해줘")
@@ -188,9 +188,9 @@ print(Temp1)
 Answer.append(Temp1)
 
 ######Question8#####
-# Temp1 = agent2.run("최근 가격의 방향성을 알려줘. 행이 낮을 수록 최신 데이터야. 판단한 이유도 말해줘")
-# print(Temp1)
-# Answer.append(Temp1)
+Temp1 = agent2.run("최근 가격의 방향성을 알려줘. 행이 낮을 수록 최신 데이터야. 판단한 이유도 말해줘")
+print(Temp1)
+Answer.append(Temp1)
 
 # print(Answer)
 
